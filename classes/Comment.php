@@ -24,6 +24,7 @@
             
             $query = 'INSERT INTO COMMENT_LISTS (COMMENT_ID, ARTICLE_ID) VALUES (:comment_id, :article_id)';
             
+            $stmt = $link->prepare($query);
             $stmt->bindParam(':comment_id', $comment_id, PDO::PARAM_INT);
             $stmt->bindParam(':article_id', $article_id, PDO::PARAM_INT);
             

@@ -31,6 +31,10 @@
                 response(ERROR, "");
             }
             break;
+        case 'getComments':
+            $commentList = new CommentList();
+            response(OK, $commentList -> getCommentList($_GET['article_id']));
+            break;
         default:
             response(ERROR, INVALID_ROUTE);
             break;
