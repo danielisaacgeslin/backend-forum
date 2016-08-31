@@ -32,6 +32,19 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         
+        public function addTag($article_id, $tag_id){
+            $link = Connection::connect();
+            
+            $query = 'INSERT INTO TAG_LISTS (ARTICLE_ID, TAG_ID) VALUES (:article_id, :tag_id)';
+            
+            $stmt = $link->prepare($query);
+            
+            $stmt->bindParam(':article_id', $article_id, PDO::PARAM_INT);
+            $stmt->bindParam(':tag_id', $tag_id, PDO::PARAM_INT);
+            
+            return $stmt->execute();
+        }
+        
         public function __construct(){
             
         }

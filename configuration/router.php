@@ -18,6 +18,10 @@
                 response(ERROR, "");
             }
             break;
+        case 'addTag':
+            $article = new Article();
+            response(OK, $article -> addTag($_POST['article_id'], $_POST['tag_id']));
+            break;
         case 'getArticleList':
             $articleList = new ArticleList();
             response(OK, $articleList -> getArticleList());
@@ -34,6 +38,18 @@
         case 'getComments':
             $commentList = new CommentList();
             response(OK, $commentList -> getCommentList($_GET['article_id']));
+            break;
+        case 'saveTag':
+            $tag = new Tag();
+            response(OK, $tag ->setTag($_POST['tag']));
+            break;
+        case 'getTagList':
+            $tagList = new TagList();
+            response(OK, $tagList ->getTagList($_GET['article_id']));
+            break;
+        case 'getTags':
+            $tagList = new TagList();
+            response(OK, $tagList ->getTags());
             break;
         default:
             response(ERROR, INVALID_ROUTE);
