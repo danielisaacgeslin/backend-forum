@@ -1,7 +1,7 @@
 <?php
     /* DIRECTORIES */
-    define("ROOT", $_SERVER["DOCUMENT_ROOT"] . "/");
-    define("ROOT_URL", "https://" . $_SERVER["SERVER_NAME"] . "/");
+    define("ROOT", $_SERVER["DOCUMENT_ROOT"] . "/dgeslinServer/");
+    define("ROOT_URL", "https://" . $_SERVER["SERVER_NAME"] . "/dgeslinServer/");
     
     /* DATABASE */
     define("DATA_BASE", "DGESLIN");
