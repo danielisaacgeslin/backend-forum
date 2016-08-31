@@ -1,9 +1,9 @@
 <?php
     class Article {  
-        public function setArticle($data){
+        public function setArticle($title, $description, $body){
             $creation_user = 1;
             
-            if(!isset($data) or !isset($data['title']) or !isset($data['description']) or !isset($data['body'])){
+            if(!isset($title) or !isset($description) or !isset($body)){
                 return false;
             }
             
@@ -13,9 +13,9 @@
                     . 'VALUES (:title, :description, :body, :creation_user)';
             $stmt = $link->prepare($query);
             
-            $stmt->bindParam(':title', $data['title'], PDO::PARAM_STR);
-            $stmt->bindParam(':description', $data['description'], PDO::PARAM_STR);
-            $stmt->bindParam(':body', $data['body'], PDO::PARAM_STR);
+            $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+            $stmt->bindParam(':body', $body, PDO::PARAM_STR);
             $stmt->bindParam(':creation_user', $creation_user, PDO::PARAM_INT);
             
             return $stmt -> execute();

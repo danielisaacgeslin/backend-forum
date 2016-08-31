@@ -11,7 +11,7 @@
             break;
         case 'saveArticle':
             $article = new Article();
-            $success = $article -> setArticle($_POST);
+            $success = $article -> setArticle($_POST['title'], $_POST['description'], $_POST['body']);
             if($success){
                 response(OK, "");
             }else{
@@ -43,7 +43,7 @@
             $tag = new Tag();
             response(OK, $tag ->setTag($_POST['tag']));
             break;
-        case 'getTagList':
+        case 'getArticleTagList':
             $tagList = new TagList();
             response(OK, $tagList ->getTagList($_GET['article_id']));
             break;
