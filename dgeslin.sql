@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2016 at 05:27 PM
+-- Generation Time: Aug 31, 2016 at 07:11 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -30,13 +30,11 @@ CREATE TABLE `articles` (
   `ID` int(11) NOT NULL,
   `CREATION_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `EDITION_TIMESTAMP` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `TAG_LIST` int(11) DEFAULT NULL,
   `TITLE` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `DESCRIPTION` varchar(350) COLLATE utf8_unicode_ci DEFAULT NULL,
   `BODY` text COLLATE utf8_unicode_ci,
   `CREATION_USER` int(11) NOT NULL,
-  `EDITION_USER` int(11) DEFAULT NULL,
-  `COMMENT_LIST` int(11) DEFAULT NULL
+  `EDITION_USER` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -60,6 +58,7 @@ CREATE TABLE `comments` (
 
 CREATE TABLE `comment_lists` (
   `ID` int(11) NOT NULL,
+  `ARTICLE_ID` int(11) NOT NULL,
   `COMMENT_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -84,6 +83,7 @@ CREATE TABLE `tags` (
 
 CREATE TABLE `tag_lists` (
   `ID` int(11) NOT NULL,
+  `ARTICLE_ID` int(11) NOT NULL,
   `TAG_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -119,8 +119,6 @@ INSERT INTO `users` (`ID`, `USERNAME`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `CREA
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `ID` (`ID`),
-  ADD KEY `COMMENT_LIST` (`COMMENT_LIST`),
-  ADD KEY `TAG_LIST` (`TAG_LIST`),
   ADD KEY `CREATION_USER` (`CREATION_USER`),
   ADD KEY `EDITION_USER` (`EDITION_USER`),
   ADD KEY `CREATION_USER_2` (`CREATION_USER`);
@@ -139,7 +137,8 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `comment_lists`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `COMMENT_ID` (`COMMENT_ID`);
+  ADD KEY `COMMENT_ID` (`COMMENT_ID`),
+  ADD KEY `ARTICLE_ID` (`ARTICLE_ID`);
 
 --
 -- Indexes for table `tags`
@@ -154,7 +153,8 @@ ALTER TABLE `tags`
 --
 ALTER TABLE `tag_lists`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `TAG_ID` (`TAG_ID`);
+  ADD KEY `TAG_ID` (`TAG_ID`),
+  ADD KEY `ARTICLE_ID` (`ARTICLE_ID`);
 
 --
 -- Indexes for table `users`
@@ -204,7 +204,6 @@ ALTER TABLE `users`
 -- Constraints for table `articles`
 --
 ALTER TABLE `articles`
-  ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`TAG_LIST`) REFERENCES `tag_lists` (`ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `articles_ibfk_2` FOREIGN KEY (`EDITION_USER`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `articles_ibfk_3` FOREIGN KEY (`CREATION_USER`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -219,7 +218,7 @@ ALTER TABLE `comments`
 -- Constraints for table `comment_lists`
 --
 ALTER TABLE `comment_lists`
-  ADD CONSTRAINT `comment_lists_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `articles` (`COMMENT_LIST`) ON DELETE CASCADE ON UPDATE NO ACTION;
+  ADD CONSTRAINT `comment_lists_ibfk_1` FOREIGN KEY (`ARTICLE_ID`) REFERENCES `articles` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `tags`
@@ -231,7 +230,8 @@ ALTER TABLE `tags`
 -- Constraints for table `tag_lists`
 --
 ALTER TABLE `tag_lists`
-  ADD CONSTRAINT `tag_lists_ibfk_1` FOREIGN KEY (`TAG_ID`) REFERENCES `tags` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `tag_lists_ibfk_1` FOREIGN KEY (`TAG_ID`) REFERENCES `tags` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tag_lists_ibfk_2` FOREIGN KEY (`ARTICLE_ID`) REFERENCES `articles` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

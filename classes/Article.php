@@ -1,7 +1,7 @@
 <?php
     class Article {  
         public function setArticle($data){
-            $creation_user = 0;
+            $creation_user = 1;
             
             if(!isset($data) or !isset($data['title']) or !isset($data['description']) or !isset($data['body'])){
                 return false;

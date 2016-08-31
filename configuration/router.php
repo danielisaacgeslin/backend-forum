@@ -22,6 +22,15 @@
             $articleList = new ArticleList();
             response(OK, $articleList -> getArticleList());
             break;
+        case 'saveComment':
+            $comment = new Comment();
+            $success = $comment -> setComment($_POST['comment'], $_POST['article_id']);
+            if($success){
+                response(OK, "");
+            }else{
+                response(ERROR, "");
+            }
+            break;
         default:
             response(ERROR, INVALID_ROUTE);
             break;
