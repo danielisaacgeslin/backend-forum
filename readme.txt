@@ -1,3 +1,5 @@
+example: <url>?route=getArticle&article_id=1
+
 services:
     -GET
     - ping -> N/A
