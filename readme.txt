@@ -1,6 +1,6 @@
 example: <url>?route=getArticle&article_id=1
 
-routes (always as  GET parameter):
+routes (always as GET parameter "route"):
     - GET
     - ping -> N/A
     - getArticle -> article_id(int)
