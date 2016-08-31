@@ -1,14 +1,14 @@
 services:
-    - ping | GET | IN: N/A
+    -GET
+    - ping -> IN: N/A
+    - getArticle -> IN: article_id(int)
+    - getArticleList -> IN: N/A
+    - getArticleTagList -> IN: article_id(int)
+    - getComments -> IN: article_id(int)
+    - getTags -> IN: N/A
 
-    - getArticle | GET | IN: article_id(int)
-    - saveArticle | POST | IN: title(string), description(string), body(string)
-    - getArticleList | GET | IN: N/A
-    - addTag | POST | IN: article_id(int), tag_id(int)
-    - getArticleTagList | GET | IN: article_id(int)
-
-    - saveComment | POST | IN: comment(string), article_id(int)
-    - getComments | GET | IN: article_id(int)
-    
-    - saveTag | POST | IN: tag(string)
-    - getTags | GET | IN: N/A
+    -POST
+    - saveArticle -> IN: title(string), description(string), body(string)
+    - addTag -> IN: article_id(int), tag_id(int)
+    - saveComment -> IN: comment(string), article_id(int)
+    - saveTag -> IN: tag(string)
