@@ -1,7 +1,7 @@
 example: <url>?route=getArticle&article_id=1
 
-services:
-    -GET
+routes (always as  GET parameter):
+    - GET
     - ping -> N/A
     - getArticle -> article_id(int)
     - getArticleList -> N/A
@@ -9,7 +9,7 @@ services:
     - getComments -> article_id(int)
     - getTags -> N/A
 
-    -POST
+    - POST
     - saveArticle -> title(string), description(string), body(string)
     - addTag -> article_id(int), tag_id(int)
     - saveComment -> comment(string), article_id(int)
