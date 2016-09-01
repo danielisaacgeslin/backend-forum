@@ -1,3 +1,5 @@
+basic backend for a forum like app to serve as server in UI development exercises
+
 example: <url>?route=getArticle&article_id=1
 
 routes (always as GET parameter "route"):
