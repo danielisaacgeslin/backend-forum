@@ -18,7 +18,11 @@
             $stmt->bindParam(':body', $body, PDO::PARAM_STR);
             $stmt->bindParam(':creation_user', $creation_user, PDO::PARAM_INT);
             
-            return $stmt -> execute();
+            if($stmt -> execute()){
+                return $link -> lastInsertId();
+            }else{
+                return false;
+            }
         }
         
         public function getArticle($id){

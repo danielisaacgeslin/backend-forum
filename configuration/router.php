@@ -11,45 +11,43 @@
             break;
         case 'saveArticle':
             $article = new Article();
-            $success = $article -> setArticle($_POST['title'], $_POST['description'], $_POST['body']);
-            if($success){
-                response(OK, "");
-            }else{
-                response(ERROR, "");
-            }
+            $result = $article -> setArticle($_POST['title'], $_POST['description'], $_POST['body']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         case 'addTag':
             $article = new Article();
-            response(OK, $article -> addTag($_POST['article_id'], $_POST['tag_id']));
+            $result = $article -> addTag($_POST['article_id'], $_POST['tag_id']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         case 'getArticleList':
             $articleList = new ArticleList();
-            response(OK, $articleList -> getArticleList());
+            $result = $articleList -> getArticleList();
+            ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         case 'saveComment':
             $comment = new Comment();
-            $success = $comment -> setComment($_POST['comment'], $_POST['article_id']);
-            if($success){
-                response(OK, "");
-            }else{
-                response(ERROR, "");
-            }
+            $result = $comment -> setComment($_POST['comment'], $_POST['article_id']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         case 'getComments':
             $commentList = new CommentList();
-            response(OK, $commentList -> getCommentList($_GET['article_id']));
+            $result = $commentList -> getCommentList($_GET['article_id']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         case 'saveTag':
             $tag = new Tag();
-            response(OK, $tag ->setTag($_POST['tag']));
+            $result = $tag ->setTag($_POST['tag']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         case 'getArticleTagList':
             $tagList = new TagList();
-            response(OK, $tagList ->getTagList($_GET['article_id']));
+            $result = $tagList ->getTagList($_GET['article_id']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         case 'getTags':
             $tagList = new TagList();
-            response(OK, $tagList ->getTags());
+            $result = $tagList ->getTags();
+            ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         default:
             response(ERROR, INVALID_ROUTE);
