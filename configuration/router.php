@@ -14,9 +14,24 @@
             $result = $article -> setArticle($_POST['title'], $_POST['description'], $_POST['body']);
             ($result ? response(OK, $result) : response(ERROR, ""));
             break;
+        case 'updateArticle':
+            $article = new Article();
+            $result = $article -> updateArticle($_POST['article_id'], $_POST['title'], $_POST['description'], $_POST['body']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
+            break;
+        case 'deleteArticle':
+            $article = new Article();
+            $result = $article -> deleteArticle($_POST['article_id']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
+            break;
         case 'addTag':
             $article = new Article();
             $result = $article -> addTag($_POST['article_id'], $_POST['tag_id']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
+            break;
+        case 'removeTag':
+            $article = new Article();
+            $result = $article -> removeTag($_POST['article_id'], $_POST['tag_id']);
             ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         case 'getArticleList':
@@ -27,6 +42,16 @@
         case 'saveComment':
             $comment = new Comment();
             $result = $comment -> setComment($_POST['comment'], $_POST['article_id']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
+            break;
+        case 'deleteComment':
+            $comment = new Comment();
+            $result = $comment -> deleteComment($_POST['comment_id']);
+            ($result ? response(OK, $result) : response(ERROR, ""));
+            break;
+        case 'updateComment':
+            $comment = new Comment();
+            $result = $comment -> updateComment($_POST['comment_id'], $_POST['comment']);
             ($result ? response(OK, $result) : response(ERROR, ""));
             break;
         case 'getComments':

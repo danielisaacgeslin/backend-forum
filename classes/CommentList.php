@@ -6,8 +6,7 @@
             }
             $link = Connection::connect();
             
-            $query = 'SELECT B.ID, B.TEXT, B.CREATION_TIMESTAMP, B.CREATION_USER FROM COMMENT_LISTS AS A INNER JOIN COMMENTS AS B '
-                    . 'ON A.COMMENT_ID = B.ID WHERE A.ARTICLE_ID = :article_id';
+            $query = 'SELECT * FROM COMMENTS WHERE ARTICLE_ID = :article_id';
             
             $stmt = $link->prepare($query);
             $stmt->bindParam(':article_id', $article_id, PDO::PARAM_INT);

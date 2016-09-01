@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2016 at 08:06 PM
+-- Generation Time: Sep 01, 2016 at 10:07 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -45,21 +45,10 @@ CREATE TABLE `articles` (
 
 CREATE TABLE `comments` (
   `ID` int(11) NOT NULL,
+  `ARTICLE_ID` int(11) NOT NULL,
   `TEXT` text COLLATE utf8_unicode_ci NOT NULL,
   `CREATION_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `CREATION_USER` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comment_lists`
---
-
-CREATE TABLE `comment_lists` (
-  `ID` int(11) NOT NULL,
-  `ARTICLE_ID` int(11) NOT NULL,
-  `COMMENT_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -133,14 +122,6 @@ ALTER TABLE `comments`
   ADD KEY `CREATION_USER` (`CREATION_USER`);
 
 --
--- Indexes for table `comment_lists`
---
-ALTER TABLE `comment_lists`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `COMMENT_ID` (`COMMENT_ID`),
-  ADD KEY `ARTICLE_ID` (`ARTICLE_ID`);
-
---
 -- Indexes for table `tags`
 --
 ALTER TABLE `tags`
@@ -170,27 +151,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `comment_lists`
---
-ALTER TABLE `comment_lists`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tag_lists`
 --
 ALTER TABLE `tag_lists`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `users`
 --
