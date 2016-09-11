@@ -2,10 +2,10 @@
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 01, 2016 at 10:51 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 12-09-2016 a las 00:39:15
+-- Versión del servidor: 10.1.13-MariaDB
+-- Versión de PHP: 7.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dgeslin`
+-- Base de datos: `dgeslin`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `articles`
+-- Estructura de tabla para la tabla `articles`
 --
 
 CREATE TABLE `articles` (
@@ -40,7 +40,7 @@ CREATE TABLE `articles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Estructura de tabla para la tabla `comments`
 --
 
 CREATE TABLE `comments` (
@@ -54,7 +54,7 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Estructura de tabla para la tabla `tags`
 --
 
 CREATE TABLE `tags` (
@@ -64,10 +64,24 @@ CREATE TABLE `tags` (
   `CREATION_USER` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `tags`
+--
+
+INSERT INTO `tags` (`ID`, `TEXT`, `CREATION_TIMESTAMP`, `CREATION_USER`) VALUES
+(1, 'sports', '2016-09-06 13:05:34', 1),
+(2, 'economics', '2016-09-06 13:05:34', 1),
+(3, 'politics', '2016-09-06 13:05:50', 1),
+(4, 'games', '2016-09-06 13:05:50', 1),
+(5, 'news', '2016-09-06 13:06:13', 1),
+(6, 'science', '2016-09-06 13:06:13', 1),
+(7, 'winter sports', '2016-09-06 13:06:44', 1),
+(8, 'international', '2016-09-06 13:06:44', 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tag_lists`
+-- Estructura de tabla para la tabla `tag_lists`
 --
 
 CREATE TABLE `tag_lists` (
@@ -79,7 +93,7 @@ CREATE TABLE `tag_lists` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -93,86 +107,126 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`ID`, `USERNAME`, `PASSWORD`, `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `CREATION_TIMESTAMP`) VALUES
 (1, 'dgeslin', '=(', 'Daniel', 'Geslin', 'danielisaacgeslin@gmail.com', '2016-08-31 15:14:25');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `articles`
+-- Indices de la tabla `articles`
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `ID` (`ID`),
   ADD KEY `CREATION_USER` (`CREATION_USER`),
   ADD KEY `EDITION_USER` (`EDITION_USER`),
-  ADD KEY `CREATION_USER_2` (`CREATION_USER`);
+  ADD KEY `CREATION_USER_2` (`CREATION_USER`),
+  ADD KEY `CREATION_USER_3` (`CREATION_USER`),
+  ADD KEY `CREATION_USER_4` (`CREATION_USER`),
+  ADD KEY `EDITION_USER_2` (`EDITION_USER`);
 
 --
--- Indexes for table `comments`
+-- Indices de la tabla `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `ID` (`ID`),
   ADD KEY `ID_2` (`ID`),
-  ADD KEY `CREATION_USER` (`CREATION_USER`);
+  ADD KEY `CREATION_USER` (`CREATION_USER`),
+  ADD KEY `ARTICLE_ID` (`ARTICLE_ID`),
+  ADD KEY `ARTICLE_ID_2` (`ARTICLE_ID`),
+  ADD KEY `CREATION_USER_2` (`CREATION_USER`);
 
 --
--- Indexes for table `tags`
+-- Indices de la tabla `tags`
 --
 ALTER TABLE `tags`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TEXT` (`TEXT`),
-  ADD KEY `CREATION_USER` (`CREATION_USER`);
+  ADD KEY `CREATION_USER` (`CREATION_USER`),
+  ADD KEY `CREATION_USER_2` (`CREATION_USER`);
 
 --
--- Indexes for table `tag_lists`
+-- Indices de la tabla `tag_lists`
 --
 ALTER TABLE `tag_lists`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `TAG_ID` (`TAG_ID`),
-  ADD KEY `ARTICLE_ID` (`ARTICLE_ID`);
+  ADD KEY `ARTICLE_ID` (`ARTICLE_ID`),
+  ADD KEY `ARTICLE_ID_2` (`ARTICLE_ID`),
+  ADD KEY `TAG_ID_2` (`TAG_ID`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `articles`
+-- AUTO_INCREMENT de la tabla `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT de la tabla `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
--- AUTO_INCREMENT for table `tags`
+-- AUTO_INCREMENT de la tabla `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
--- AUTO_INCREMENT for table `tag_lists`
+-- AUTO_INCREMENT de la tabla `tag_lists`
 --
 ALTER TABLE `tag_lists`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `articles`
+--
+ALTER TABLE `articles`
+  ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`CREATION_USER`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `articles_ibfk_2` FOREIGN KEY (`EDITION_USER`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`ARTICLE_ID`) REFERENCES `articles` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`CREATION_USER`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `tags`
+--
+ALTER TABLE `tags`
+  ADD CONSTRAINT `tags_ibfk_1` FOREIGN KEY (`CREATION_USER`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `tag_lists`
+--
+ALTER TABLE `tag_lists`
+  ADD CONSTRAINT `tag_lists_ibfk_1` FOREIGN KEY (`ARTICLE_ID`) REFERENCES `articles` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tag_lists_ibfk_2` FOREIGN KEY (`TAG_ID`) REFERENCES `tags` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,6 +1,6 @@
 <?php
     /* DIRECTORIES */
-    define("ROOT", $_SERVER["DOCUMENT_ROOT"] . "/dgeslinServer/");
+    define("ROOT", $_SERVER["DOCUMENT_ROOT"] . "/dgeslin/");
     define("ROOT_URL", "https://" . $_SERVER["SERVER_NAME"] . "/dgeslinServer/");
     
     /* DATABASE */
